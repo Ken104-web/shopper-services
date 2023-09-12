@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     print('seeding products')
     for customer in customers:
-        products = [Product(product_name=items[i % len(items)], price=fake.random_number(digits=2), customer_id=customer.id, service_id=random.randint(0, 9)) for i in range(17)]
+        products = [Product(product_name=random.choice(items), price=fake.random_int(20, 50), customer_id=customer.id, service_id=random.randint(0, 9)) for i in range(17)]
         session.add_all(products)
         session.commit()
         print("seeding done")
