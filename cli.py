@@ -27,16 +27,27 @@ while True:
             # call a specific customer
             customer = session.query(Customer).filter_by(id=id).first()
             if customer: 
-                click.echo(f"Name of customer: {customer.name}")
+                click.echo(f"Customer Name: {customer.name}")
             else:
                 click.echo(f"Customer not found")
                 
-        name = click.prompt('\nEnter the name of the customer you want to call:')
+        name = click.prompt('\nEnter the name of the customer:')
         call_customer(name)
 
-    
+        def product_name(id):
+            customer_product = session.query(Product).filter_by(id=id).first()
+            if customer_product:
+                click.echo(f'Products purchased: {customer_product.product_name}')
+            else:
+                click.echo(f"Product doesn't match")
+        
+        product = click.prompt('\nEnter the bought product:')
+        product_name(product)
 
-    
+        
+
+
+
     break
 
 if __name__ == '__main__':
