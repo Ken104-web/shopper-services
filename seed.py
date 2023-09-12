@@ -1,6 +1,6 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-from models import Customer, Product, Service
+from models import Customer, Product, Service, customer_service
 from faker import Faker
 import random
 
@@ -43,6 +43,16 @@ if __name__ == '__main__':
         session.add_all(products)
         session.commit()
         print("seeding done")
+
+    print('seeding customer service')
+    for i in session.query(Product).all():
+        assigned_id = customer_service.insert().values(customer_id=i.customer_id, service_id =i.service_id)
+        session.execute(assigned_id)
+        session.commit()
+
+    print ('done')
+
+    session.close()
 
 
 
